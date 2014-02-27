@@ -226,7 +226,9 @@ def t_error(t):
 def lex(text=None):
     kwargs = {}
     if __debug__:
-        kwargs = dict(debug=True, debuglog=logging.getLogger(__name__))
+        logger = logging.getLogger(__name__)
+        logger.disabled = True
+        kwargs = dict(debug=True, debuglog=logger)
     l = ply.lex.lex(reflags=re.UNICODE, **kwargs)
     if text is not None:
         l.input(text)
