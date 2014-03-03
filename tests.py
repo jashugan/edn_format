@@ -107,6 +107,7 @@ class EdnTest(unittest.TestCase):
         self.assertEqual(data_input, loads(dumps(data_input)))
 
     def test_dump(self):
+        self.assertEqual("\"nested \\\"quotes\\\"\"", dumps('nested "quotes"'))
         self.check_roundtrip({1, 2, 3})
         self.check_roundtrip(
             {Keyword("a"): 1,

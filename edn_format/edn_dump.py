@@ -2,6 +2,7 @@ import sys
 import itertools
 import decimal
 import datetime
+import json
 import uuid
 import pyrfc3339
 from .immutable_dict import ImmutableDict
@@ -34,7 +35,7 @@ def dump(obj):
     elif isinstance(obj, (Keyword, Symbol)):
         return str(obj)
     elif isinstance(obj, basestring):
-        return '"{}"'.format(obj)
+        return json.dumps(obj)
     elif isinstance(obj, tuple):
         return "({})".format(seq(obj))
     elif isinstance(obj, list):
