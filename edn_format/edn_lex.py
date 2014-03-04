@@ -150,6 +150,8 @@ def t_STRING(t):
                      .replace(r"\return", "\r") \
                      .replace(r"\space", " ") \
                      .replace(r"\tab", "\t")
+    ESCAPES = {'"': '"'}
+    t.value = re.sub("\\\\(.)", lambda m: ESCAPES.get(m.group(1), m.group(1)), t.value)
     return t
 
 

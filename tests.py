@@ -66,8 +66,6 @@ class EdnTest(unittest.TestCase):
                          'a*b')
         self.check_parse("ab",
                          '"ab"')
-        self.check_parse("a\\\"b",
-                         '"a\\"b"')
         self.check_parse("blah\n",
                          '"blah\n"')
         self.check_parse("blah blah",
@@ -98,7 +96,6 @@ class EdnTest(unittest.TestCase):
                         '#inst "2012-12-22T19:40:18Z"')
         self.check_parse("|", "\"|\"")
         self.check_parse("%", "\"%\"")
-        self.check_parse(['bl\\"ah'], """["bl\\"ah"]""")
         self.check_parse("blah\n", '"blah\n"')
         self.check_parse(["abc", "123"], '["abc", "123"]')
         self.check_parse({"key": "value"}, '{"key" "value"}')
@@ -113,6 +110,7 @@ class EdnTest(unittest.TestCase):
             {Keyword("a"): 1,
              "foo": Keyword("gone"),
              Keyword("bar"): [1, 2, 3]})
+        self.assertEqual(loads(dumps('nested "quotes"')), loads(dumps(loads(dumps('nested "quotes"')))))
 
     def test_round_trip_conversion(self):
         EDN_LITERALS = [
