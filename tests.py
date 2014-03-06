@@ -72,6 +72,9 @@ class ParserTest(unittest.TestCase):
     def test_symbol(self):
         self.check_parse('a*b', Symbol("a*b"))
 
+    def test_boolean(self):
+        self.check_parse('true', True)
+
     def test_string(self):
         self.check_parse('"ab"', "ab")
         self.check_parse('"blah\n"', "blah\n")
