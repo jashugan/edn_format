@@ -72,8 +72,8 @@ class ParserTest(unittest.TestCase):
     def test_symbol(self):
         self.check_parse('a*b', Symbol("a*b"))
 
-    def test_boolean(self):
-        self.check_parse('true', True)
+    def test_vector_of_booleans_with_commas(self):
+        self.check_parse('[true, false]', [True, False])
 
     def test_string(self):
         self.check_parse('"ab"', "ab")
@@ -111,6 +111,7 @@ class ParserTest(unittest.TestCase):
         self.check_parse(r"\newline", "\n")
         self.check_parse("\"|\"", "|")
         self.check_parse("\"%\"", "%")
+
 
     def test_tag(self):
         self.check_parse(
