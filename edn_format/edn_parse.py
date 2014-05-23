@@ -141,8 +141,6 @@ def p_error(p):
 
 
 def parse(text):
-    kwargs = ImmutableDict({})
-    if __debug__:
-        kwargs = dict({"debug": True})
+    kwargs = ImmutableDict({'outputdir': '/tmp', 'debug': 0})
     p = ply.yacc.yacc(**kwargs)
     return p.parse(text, lexer=lex())
